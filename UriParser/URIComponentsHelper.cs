@@ -22,6 +22,7 @@ namespace UriParser
                     throw new ArgumentException($"\"{_uri}\" is not a valid URI");
                 }
             }
+            
         }
 
         public string GetScheme()
@@ -42,6 +43,16 @@ namespace UriParser
             }
 
             throw new ArgumentException($"\"{_uri}\" is not a valid URI");
+        }
+
+        public string GetUser(string input)
+        {
+            return GetStringBeforeDelimitor(input, Delimiters.USER);
+        }
+
+        public string GetPassowrd(string input)
+        {
+            return GetStringBeforeDelimitor(input, Delimiters.PASSWORD);
         }
     }
 }
