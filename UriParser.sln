@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2011
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URIParser", "UriParser\URIParser.csproj", "{6172E677-B134-492C-AFC7-38E548454B84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "URIParser.Tests", "URIParser.Tests\URIParser.Tests.csproj", "{1D6A077B-9187-40CE-84D5-10E212A66D7D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6172E677-B134-492C-AFC7-38E548454B84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6172E677-B134-492C-AFC7-38E548454B84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6172E677-B134-492C-AFC7-38E548454B84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6172E677-B134-492C-AFC7-38E548454B84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D6A077B-9187-40CE-84D5-10E212A66D7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D6A077B-9187-40CE-84D5-10E212A66D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D6A077B-9187-40CE-84D5-10E212A66D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D6A077B-9187-40CE-84D5-10E212A66D7D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6E0D49E-07B3-4208-85BE-762199462E6E}
+	EndGlobalSection
+EndGlobal
