@@ -1,7 +1,7 @@
-c:\users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\bin\Debug\UriParser.dll.config
-c:\users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\bin\Debug\UriParser.dll
-c:\users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\bin\Debug\UriParser.pdb
-c:\users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\obj\Debug\URIParser.csprojResolveAssemblyReference.cache
-c:\users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\obj\Debug\URIParser.csproj.CoreCompileInputs.cache
-c:\users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\obj\Debug\UriParser.dll
-c:\users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\obj\Debug\UriParser.pdb
+C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\bin\Debug\UriParser.dll.config
+C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\bin\Debug\UriParser.dll
+C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\bin\Debug\UriParser.pdb
+C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\obj\Debug\URIParser.csproj.CoreCompileInputs.cache
+C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\obj\Debug\UriParser.dll
+C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\obj\Debug\UriParser.pdb
+C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\UriParser\obj\Debug\URIParser.csprojResolveAssemblyReference.cache

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Security.Authentication;
 using NUnit.Framework;
-using UriParser;
-using UriParser.Exceptions;
 using URIParser = UriParser.URIParser;
 
 namespace URIParserTests
@@ -12,7 +9,7 @@ namespace URIParserTests
     {
         public URIParser URIParser;
 
-        [OneTimeSetUp]
+        [SetUp]
         public void Setup()
         {
             URIParser = new URIParser();
@@ -32,9 +29,9 @@ namespace URIParserTests
             }
 
             [Test]
-            [TestCase("ftp://alex")]
-            [TestCase("ftp://alex;password1")]
-            [TestCase("oneschema://username ")]
+            [TestCase("ftp://alex@magic.com")]
+            [TestCase("ftp://alex;password1@mas.ro")]
+            [TestCase("oneschema://username @com")]
             public void Authentication_username_no_password(string input)
             {
                 Assert.That(() => URIParser.Parse(input),
@@ -136,10 +133,26 @@ namespace URIParserTests
             [TestCase("http:?admin=1")]
             [TestCase("http:?admin=1#fig3")]
 
-            public void Path_is_set_correctly(string input)
+            public void Query_is_set_correctly(string input)
             {
                 var result = URIParser.Parse(input);
-                Assert.That(result.Path, Is.EqualTo("admin=1"));
+                Assert.That(result.Query, Is.EqualTo("admin=1"));
+            }
+        }
+
+        public class ValidUriFragment : UriParserTests
+        {
+            [Test]
+            [TestCase("http://user:pass@website.co.uk:80/authentication?admin=1#fig1")]
+            [TestCase("http://user:pass@website.co.uk:80/authentication#fig1")]
+            [TestCase("http://user:pass@website.co.uk:80#fig1")]
+            [TestCase("http:/authentication?admin=1#fig1")]
+            [TestCase("http:/authentication#fig1")]
+            [TestCase("http:#fig1")]
+            public void Fragment_is_set_correctly(string input)
+            {
+                var result = URIParser.Parse(input);
+                Assert.That(result.Fragment, Is.EqualTo("fig1"));
             }
         }
     }
