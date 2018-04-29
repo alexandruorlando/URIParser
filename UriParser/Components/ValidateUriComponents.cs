@@ -14,14 +14,15 @@ namespace UriParser.Components
 
         public void CheckOptionalComponentsValidity(string uri)
         {
-            if (_uriParser.HasQuery && _uriParser.PathSymbolPosition > _uriParser.QuerySymbolPosition || _uriParser.HasFragment && _uriParser.PathSymbolPosition > _uriParser.FragmentSymbolPosition)
+            if (_uriParser.HasQuery && _uriParser.PathSymbolPosition > _uriParser.QuerySymbolPosition ||
+                _uriParser.HasFragment && _uriParser.PathSymbolPosition > _uriParser.FragmentSymbolPosition)
             {
-                throw new ArgumentException($"\"{uri}\" is not a valid URI");
+                ThrowArgumentException();
             }
 
             if (_uriParser.HasFragment && _uriParser.QuerySymbolPosition > _uriParser.FragmentSymbolPosition)
             {
-                throw new ArgumentException($"\"{uri}\" is not a valid URI");
+                ThrowArgumentException();
             }
         }
 
@@ -29,14 +30,14 @@ namespace UriParser.Components
         {
             if (_uriParser.HasAuthority && String.IsNullOrEmpty(result.Host))
             {
-                throw new ArgumentException($"\"{_uriParser.Uri}\" is not a valid URI");
+                ThrowArgumentException();
             }
 
             if (_uriParser.HasUser)
             {
                 if (String.IsNullOrEmpty(result.User) || String.IsNullOrEmpty(result.Password))
                 {
-                    throw new ArgumentException($"\"{_uriParser.Uri}\" is not a valid URI");
+                    ThrowArgumentException();
                 }
             }
 
@@ -44,39 +45,54 @@ namespace UriParser.Components
             {
                 if (String.IsNullOrEmpty(result.Port))
                 {
-                    throw new ArgumentException($"\"{_uriParser.Uri}\" is not a valid URI");
-
+                    ThrowArgumentException();
                 }
             }
 
             if (_uriParser.HasPath && String.IsNullOrEmpty(result.Path))
             {
-                throw new ArgumentException($"\"{_uriParser.Uri}\" is not a valid URI");
+                ThrowArgumentException();
             }
 
             if (_uriParser.HasQuery && String.IsNullOrEmpty(result.Query))
             {
-                throw new ArgumentException($"\"{_uriParser.Uri}\" is not a valid URI");
+                ThrowArgumentException();
             }
 
             if (_uriParser.HasFragment && String.IsNullOrEmpty(result.Fragment))
             {
-                throw new ArgumentException($"\"{_uriParser.Uri}\" is not a valid URI");
+                ThrowArgumentException();
             }
 
             CheckPartOfUri(URIComponent.Scheme, result.Scheme);
+            if (result.Port != null)
+            {
+                CheckPartOfUri(URIComponent.Port, result.Port);
+            }
         }
+
         public void CheckPartOfUri(URIComponent partOfUri, string value)
         {
             if (partOfUri == URIComponent.Scheme)
             {
-                var match = Regex.Match(value, "^[a-zA-Z0-9+.-]+$");
-                if (!match.Success)
-                {
-                    throw new ArgumentException($"\"{_uriParser.Uri}\" is not a valid URI");
+                if(!Regex.IsMatch(value, "^[a-zA-Z0-9+.-]+$"))
+                { 
+                    ThrowArgumentException();
                 }
             }
 
+            if (partOfUri == URIComponent.Port)
+            {
+                if (!Regex.IsMatch(value, @"^\d+$"))
+                {
+                    ThrowArgumentException();
+                }
+            }
+        }
+
+        private void ThrowArgumentException()
+        {
+            throw new ArgumentException($"\"{_uriParser.Uri}\" is not a valid URI");
         }
     }
 }

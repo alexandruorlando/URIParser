@@ -18,6 +18,7 @@ namespace URIParserTests
         public class InvalidURI : UriParserTests
         {
             [Test]
+            [TestCase("")]
             [TestCase("1\\http:")]
             [TestCase("")]
             [TestCase("::")]
@@ -60,123 +61,131 @@ namespace URIParserTests
                 Assert.That(() => URIParser.Parse(input),
                     Throws.TypeOf<ArgumentException>().With.Message.EqualTo($"\"{input}\" is not a valid URI"));
             }
-        }
 
-        public class ValidUriScheme : UriParserTests
-        {
             [Test]
-            [TestCase("http:")]
-            [TestCase("a1111:")]
-            [TestCase("x:")]
-            public void Only_scheme_is_set(string input)
+            [TestCase("ftp://user:password@mydomain.com:meh/path")]
+            public void Not_numerical_port_throws_ArgumentException(string input)
             {
-                var result = URIParser.Parse(input);
-                var schemeFromInput = input.Substring(0, input.Length - 1);
-                Assert.That(result.Scheme, Is.EqualTo(schemeFromInput));
+                Assert.That(() => URIParser.Parse(input),
+                    Throws.TypeOf<ArgumentException>().With.Message.EqualTo($"\"{input}\" is not a valid URI"));
             }
         }
+    }
 
-        public class ValidUriAuthority : UriParserTests
+    public class ValidUriScheme : UriParserTests
+    {
+        [Test]
+        [TestCase("http:")]
+        [TestCase("a1111:")]
+        [TestCase("x:")]
+        public void Only_scheme_is_set(string input)
         {
-            [Test]
-            [TestCase("https://alex:pass123@home-address")]
-            public void Scheme_is_set_correctly(string input)
-            {
-                var result = URIParser.Parse(input);
-                Assert.That(result.Scheme, Is.EqualTo("https"));
-            }
+            var result = URIParser.Parse(input);
+            var schemeFromInput = input.Substring(0, input.Length - 1);
+            Assert.That(result.Scheme, Is.EqualTo(schemeFromInput));
+        }
+    }
 
-            [Test]
-            [TestCase("https://alex:pass123@home-address")]
-            public void User_is_set_correctly(string input)
-            {
-                var result = URIParser.Parse(input);
-                Assert.That(result.User, Is.EqualTo("alex"));
-            }
-
-            [Test]
-            [TestCase("https://alex:pass123@home-address")]
-            public void Password_is_set_correctly(string input)
-            {
-                var result = URIParser.Parse(input);
-                Assert.That(result.Password, Is.EqualTo("pass123"));
-            }
-
-            [Test]
-            [TestCase("svn://mih:car@mydomain.com:53")]
-            [TestCase("svn://mih:car@mydomain.com:53/docs")]
-            [TestCase("svn://mih:car@mydomain.com/files")]
-            [TestCase("svn://mih:car@mydomain.com")]
-            [TestCase("svn://mih:car@mydomain.com#fig1")]
-            [TestCase("svn://mih:car@mydomain.com?param1=3")]
-            [TestCase("svn://mih:car@mydomain.com:29/loc1?var=2#fig1")]
-            public void Host_is_set_correctly(string input)
-            {
-                var result = URIParser.Parse(input);
-                Assert.That(result.Host, Is.EqualTo("mydomain.com"));
-            }
-
-            [Test]
-            [TestCase("svn://mih:car@mydomain.com:53")]
-            [TestCase("svn://mih:car@ddddd.com:53/docs")]
-            [TestCase("svn://mih:car@ppp.com:53/loc1?var=2#fig7")]
-            [TestCase("svn://pox.ph:53/loc1?var=2#fig1")]
-            public void Port_is_set_correctly(string input)
-            {
-                var result = URIParser.Parse(input);
-                Assert.That(result.Port, Is.EqualTo("53"));
-            }
-
+    public class ValidUriAuthority : UriParserTests
+    {
+        [Test]
+        [TestCase("https://alex:pass123@home-address")]
+        public void Scheme_is_set_correctly(string input)
+        {
+            var result = URIParser.Parse(input);
+            Assert.That(result.Scheme, Is.EqualTo("https"));
         }
 
-        public class ValidUriPath : UriParserTests
+        [Test]
+        [TestCase("https://alex:pass123@home-address")]
+        public void User_is_set_correctly(string input)
         {
-            [Test]
-            [TestCase("http://user:pass@website.co.uk:80/authentication")]
-            [TestCase("http://user:pass@website.co.uk:80/authentication?admin=1#fig1")]
-            [TestCase("http://user:pass@website.co.uk:80/authentication?admin=1")]
-            [TestCase("http:/authentication")]
-            [TestCase("http:/authentication?admin=1#fig1")]
-            [TestCase("http:/authentication?admin=1")]
-
-            public void Path_is_set_correctly(string input)
-            {
-                var result = URIParser.Parse(input);
-                Assert.That(result.Path, Is.EqualTo("authentication"));
-            }
+            var result = URIParser.Parse(input);
+            Assert.That(result.User, Is.EqualTo("alex"));
         }
 
-        public class ValidUriQuery : UriParserTests
+        [Test]
+        [TestCase("https://alex:pass123@home-address")]
+        public void Password_is_set_correctly(string input)
         {
-            [Test]             
-            [TestCase("http://user:pass@website.co.uk:80/authentication?admin=1#fig1")]
-            [TestCase("http://user:pass@website.co.uk:80/authentication?admin=1")]
-            [TestCase("http:/authentication?admin=1#fig1")]
-            [TestCase("http:/authentication?admin=1")]
-            [TestCase("http:?admin=1")]
-            [TestCase("http:?admin=1#fig3")]
-
-            public void Query_is_set_correctly(string input)
-            {
-                var result = URIParser.Parse(input);
-                Assert.That(result.Query, Is.EqualTo("admin=1"));
-            }
+            var result = URIParser.Parse(input);
+            Assert.That(result.Password, Is.EqualTo("pass123"));
         }
 
-        public class ValidUriFragment : UriParserTests
+        [Test]
+        [TestCase("svn://mih:car@mydomain.com:53")]
+        [TestCase("svn://mih:car@mydomain.com:53/docs")]
+        [TestCase("svn://mih:car@mydomain.com/files")]
+        [TestCase("svn://mih:car@mydomain.com")]
+        [TestCase("svn://mih:car@mydomain.com#fig1")]
+        [TestCase("svn://mih:car@mydomain.com?param1=3")]
+        [TestCase("svn://mih:car@mydomain.com:29/loc1?var=2#fig1")]
+        public void Host_is_set_correctly(string input)
         {
-            [Test]
-            [TestCase("http://user:pass@website.co.uk:80/authentication?admin=1#fig1")]
-            [TestCase("http://user:pass@website.co.uk:80/authentication#fig1")]
-            [TestCase("http://user:pass@website.co.uk:80#fig1")]
-            [TestCase("http:/authentication?admin=1#fig1")]
-            [TestCase("http:/authentication#fig1")]
-            [TestCase("http:#fig1")]
-            public void Fragment_is_set_correctly(string input)
-            {
-                var result = URIParser.Parse(input);
-                Assert.That(result.Fragment, Is.EqualTo("fig1"));
-            }
+            var result = URIParser.Parse(input);
+            Assert.That(result.Host, Is.EqualTo("mydomain.com"));
+        }
+
+        [Test]
+        [TestCase("svn://mih:car@mydomain.com:53")]
+        [TestCase("svn://mih:car@ddddd.com:53/docs")]
+        [TestCase("svn://mih:car@ppp.com:53/loc1?var=2#fig7")]
+        [TestCase("svn://pox.ph:53/loc1?var=2#fig1")]
+        public void Port_is_set_correctly(string input)
+        {
+            var result = URIParser.Parse(input);
+            Assert.That(result.Port, Is.EqualTo("53"));
+        }
+
+    }
+
+    public class ValidUriPath : UriParserTests
+    {
+        [Test]
+        [TestCase("http://user:pass@website.co.uk:80/authentication")]
+        [TestCase("http://user:pass@website.co.uk:80/authentication?admin=1#fig1")]
+        [TestCase("http://user:pass@website.co.uk:80/authentication?admin=1")]
+        [TestCase("http:/authentication")]
+        [TestCase("http:/authentication?admin=1#fig1")]
+        [TestCase("http:/authentication?admin=1")]
+
+        public void Path_is_set_correctly(string input)
+        {
+            var result = URIParser.Parse(input);
+            Assert.That(result.Path, Is.EqualTo("authentication"));
+        }
+    }
+
+    public class ValidUriQuery : UriParserTests
+    {
+        [Test]
+        [TestCase("http://user:pass@website.co.uk:80/authentication?admin=1#fig1")]
+        [TestCase("http://user:pass@website.co.uk:80/authentication?admin=1")]
+        [TestCase("http:/authentication?admin=1#fig1")]
+        [TestCase("http:/authentication?admin=1")]
+        [TestCase("http:?admin=1")]
+        [TestCase("http:?admin=1#fig3")]
+
+        public void Query_is_set_correctly(string input)
+        {
+            var result = URIParser.Parse(input);
+            Assert.That(result.Query, Is.EqualTo("admin=1"));
+        }
+    }
+
+    public class ValidUriFragment : UriParserTests
+    {
+        [Test]
+        [TestCase("http://user:pass@website.co.uk:80/authentication?admin=1#fig1")]
+        [TestCase("http://user:pass@website.co.uk:80/authentication#fig1")]
+        [TestCase("http://user:pass@website.co.uk:80#fig1")]
+        [TestCase("http:/authentication?admin=1#fig1")]
+        [TestCase("http:/authentication#fig1")]
+        [TestCase("http:#fig1")]
+        public void Fragment_is_set_correctly(string input)
+        {
+            var result = URIParser.Parse(input);
+            Assert.That(result.Fragment, Is.EqualTo("fig1"));
         }
     }
 }
