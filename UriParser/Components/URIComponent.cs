@@ -1,5 +1,5 @@
 ﻿
-namespace UriParser
+namespace UriParser.Components
 {
     public enum URIComponent
     {

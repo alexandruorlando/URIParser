@@ -46,14 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exceptions\AuthorityParametersNotFoundException.cs" />
+    <Compile Include="Components\Optional\Authority\AuthorityInformation.cs" />
+    <Compile Include="Components\Optional\FragmentInformation.cs" />
+    <Compile Include="Components\Optional\PathInformation.cs" />
+    <Compile Include="Components\Optional\QueryInformation.cs" />
+    <Compile Include="Components\Optional\Authority\UserInformation.cs" />
+    <Compile Include="Components\SchemeInformation.cs" />
     <Compile Include="Delimiters.cs" />
     <Compile Include="ParsedURI.cs" />
-    <Compile Include="URIComponent.cs" />
+    <Compile Include="Components\URIComponent.cs" />
     <Compile Include="URIParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="URIComponentsBuilder.cs" />
-    <Compile Include="ValidateUriComponents.cs" />
+    <Compile Include="Components\URIComponentsBuilder.cs" />
+    <Compile Include="Components\ValidateUriComponents.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

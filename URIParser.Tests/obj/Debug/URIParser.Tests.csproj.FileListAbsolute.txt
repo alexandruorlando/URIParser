@@ -1,3 +1,4 @@
+C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tests\obj\Debug\URIParser.Tests.csproj.CoreCompileInputs.cache
 C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tests\bin\Debug\URIParser.Tests.dll.config
 C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tests\bin\Debug\URIParser.Tests.dll
 C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tests\bin\Debug\URIParser.Tests.pdb
@@ -8,7 +9,6 @@ C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tes
 C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tests\bin\Debug\nunit.framework.pdb
 C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tests\bin\Debug\nunit.framework.xml
 C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tests\obj\Debug\URIParser.Tests.csprojResolveAssemblyReference.cache
-C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tests\obj\Debug\URIParser.Tests.csproj.CoreCompileInputs.cache
 C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tests\obj\Debug\URIParser.Tests.csproj.CopyComplete
 C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tests\obj\Debug\URIParser.Tests.dll
 C:\Users\a.orlando\documents\visual studio 2017\Projects\UriParser\URIParser.Tests\obj\Debug\URIParser.Tests.pdb

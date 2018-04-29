@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace UriParser
+namespace UriParser.Components
 {
     public class ValidateUriComponents
     {

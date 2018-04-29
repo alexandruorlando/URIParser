@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 
-namespace UriParser
+namespace UriParser.Components
 {
     public class URIComponentsBuilder
     {
@@ -17,7 +16,7 @@ namespace UriParser
             return GetStringBeforeDelimitor(_uri, Delimiters.SCHEME);
         }
 
-        public string GetStringAfterDelimitor(string input, char delimitor)
+        public static string GetStringAfterDelimitor(string input, char delimitor)
         {
             return input.Substring(input.IndexOf(delimitor) + 1);
         }
@@ -41,31 +40,6 @@ namespace UriParser
         public string GetPassword(string input)
         {
             return GetStringBeforeDelimitor(input, Delimiters.PASSWORD);
-        }
-
-        public bool IsUserInformation(string input)
-        {
-            return input.Contains(Delimiters.PASSWORD.ToString());
-        }
-
-        public bool IsPortInformation(string input)
-        {
-            return input.Contains(Delimiters.HOST_WITH_PORT.ToString());
-        }
-
-        public string GetHostWithPortProvided(string restOfUri)
-        {
-            return GetStringBeforeDelimitor(restOfUri, Delimiters.HOST_WITH_PORT);
-        }
-
-        public bool IsPathComponent(string input)
-        {
-            return input.Contains(Delimiters.PATH.ToString());
-        }
-
-        public string GetPath(string restOfUri)
-        {
-            return GetStringAfterDelimitor(restOfUri, Delimiters.PATH);
         }
     }
 }
