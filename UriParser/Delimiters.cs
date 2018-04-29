@@ -11,5 +11,6 @@ namespace UriParser
         public const char PATH = '/';
         public const char QUERY = '?';
         public const char FRAGMENT = '#';
+        public const string _authorityPrefix = "//";
     }
 }

@@ -37,6 +37,29 @@ namespace URIParserTests
                 Assert.That(() => URIParser.Parse(input),
                     Throws.TypeOf<ArgumentException>().With.Message.EqualTo($"\"{input}\" is not a valid URI"));
             }
+
+            [Test]
+            [TestCase("ftp://:password99@magic.com:61")]
+            [TestCase("ftp://mike:@magic.com:61")]
+            [TestCase("ftp://user:password@:61")]
+            [TestCase("ftp://user:password@mydomain:/users")]
+            [TestCase("ftp://user:password@mydomain:49/?id=343reyery45y4")]
+            [TestCase("ftp://user:password@mydomain:49/users?#part3")]
+            public void Empty_components_throw_ArgumentException(string input)
+            {
+                Assert.That(() => URIParser.Parse(input),
+                    Throws.TypeOf<ArgumentException>().With.Message.EqualTo($"\"{input}\" is not a valid URI"));
+            }
+
+            [Test]
+            [TestCase("ftp://user:password@mydomain.com:61?val=31/path")]
+            [TestCase("ftp://user:password@mydomain.com:61#frag1/path")]
+            [TestCase("ftp://user:password@mydomain.com:61#frag1?x=7")]
+            public void Wrong_order_components_throw_ArgumentException(string input)
+            {
+                Assert.That(() => URIParser.Parse(input),
+                    Throws.TypeOf<ArgumentException>().With.Message.EqualTo($"\"{input}\" is not a valid URI"));
+            }
         }
 
         public class ValidUriScheme : UriParserTests
